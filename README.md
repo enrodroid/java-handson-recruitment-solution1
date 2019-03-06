@@ -1,5 +1,4 @@
 # MAS Global Consulting - JAVA Hands-on Test 
-- (http://www.masglobalconsulting.com)
 
 Medellin, Colombia Recruitment Process for Mas Global Consulting for Java developer position.
 
@@ -81,3 +80,5 @@ This project is licensed under the GNU GENERAL PUBLIC LICENSE - see the [LICENSE
 
 * To María Clara Londoño Valencia, Technical Recruiter for MAS Global Consulting, LLC
 * To Mahinder Rao, Technical Recruiter associate for MAS Global Consulting, LLC
+* http://www.masglobalconsulting.com
+
