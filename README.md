@@ -1,4 +1,4 @@
-# MAS Global Consulting - JAVA Hands-on Test 
+# JAVA Hands-on Test (MAS Global Consulting)
 
 Medellin, Colombia Recruitment Process for Mas Global Consulting for Java developer position.
 
