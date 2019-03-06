@@ -1,9 +1,10 @@
 # MasGlobal-Java Dev Test
 Medellin recruitment process for MasGlobal Consulting:
 
-- API: http://masglobaltestapi.azurewebsites.net/api/employees
+## API 
+http://masglobaltestapi.azurewebsites.net/api/employees
 
-- Requirements:
+## Requirements
 1. Create a data access layer that consumes the following API as your data repository.
 
 2. Create a Business Logic layer so you can retrieve the employees’ information including a calculated Annual Salary following these rules:
