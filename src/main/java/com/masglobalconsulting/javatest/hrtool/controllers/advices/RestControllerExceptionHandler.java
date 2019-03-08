@@ -15,6 +15,6 @@ public class RestControllerExceptionHandler extends ResponseEntityExceptionHandl
   @ExceptionHandler(value = {HRException.class})
   protected ResponseEntity<Object> handleConflict(Exception ex, WebRequest request) {
     return handleExceptionInternal(ex, ex.getMessage(),
-        new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+        new HttpHeaders(), HttpStatus.PARTIAL_CONTENT, request);
   }
 }

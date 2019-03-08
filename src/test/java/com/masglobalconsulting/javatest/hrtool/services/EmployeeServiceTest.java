@@ -28,7 +28,7 @@ public class EmployeeServiceTest {
     try {
       Role enriqueRole = new Role(0, "Support", "Support team member");
       Employee enrique = new Employee(0, enriqueRole, "Enrique F. Agudo V.",
-          ContractFactory.getContractBy(EContractType.HOURLY, 50.0, 0.0));
+          ContractFactory.createContract(EContractType.HOURLY, 50.0, .0));
       
       List<Employee> expectedList = Collections.singletonList(enrique);
       List<Employee> resultingList = employeeService.getEmployees();

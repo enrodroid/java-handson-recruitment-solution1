@@ -47,9 +47,9 @@ public class EmployeeDto implements Serializable {
     if (Objects.nonNull(contract)) {
       contractTypeName = contract.getName();
       if (ContractFactory.isHourlyContract(contract)) {
-        hourlySalary = contract.getAnnualSalary().intValue();
+        hourlySalary = contract.getSalary().intValue();
       } else {
-        monthlySalary = contract.getAnnualSalary().intValue();
+        monthlySalary = contract.getSalary().intValue();
       }
     }
   }

@@ -8,27 +8,31 @@ import com.masglobalconsulting.javatest.hrtool.domain.types.EContractType;
 public class ContractFactory {
   
   private ContractFactory() {
-    throw new IllegalStateException("Class Contract Factory!");
+    throw new IllegalStateException("ContractFactory can't be instantiated!");
   }
   
-  public static Contract getContractBy(EContractType type, Double hourlySalary, Double monthlySalary) {
+  private static Class<?> getContractType(Contract contract) {
+    return contract.getClass();
+  }
+  
+  public static boolean isHourlyContract(Contract contract) {
+    return getContractType(contract).equals(HourlySalaryContract.class);
+  }
+  
+  public static Contract createContract(EContractType type, Double hourlySalary, Double monthlySalary) {
     Contract contract;
     switch (type) {
       case HOURLY:
         contract = new HourlySalaryContract();
-        contract.setSalary(hourlySalary);
+        contract.setSalary(contract.calcBaseSalaryFromAnnualSalary(hourlySalary));
         break;
       case MONTHLY:
         contract = new MonthlySalaryContract();
-        contract.setSalary(monthlySalary);
+        contract.setSalary(contract.calcBaseSalaryFromAnnualSalary(monthlySalary));
         break;
-      default: return null;
+      default: throw new IllegalArgumentException("No such contract type!");
     }
     contract.setName(type.getName());
     return contract;
-  }
-  
-  public static boolean isHourlyContract(Contract contract) {
-    return contract.getClass().equals(HourlySalaryContract.class);
   }
 }

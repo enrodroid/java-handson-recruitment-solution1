@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -28,11 +29,14 @@ public class EmployeeServiceImpl implements EmployeeService {
   @Override
   public Employee getEmployee(Integer id) throws HRException {
     try {
-      return new Employee(employeeDao.findById(id));
+      EmployeeDto employeeDto = employeeDao.findById(id);
+      if (Objects.nonNull(employeeDto)) {
+        return new Employee(employeeDto);
+      }
     } catch (HRDaoException e) {
       LOGGER.error("Exception was triggered trying to find employee with id " + id, e);
-      throw new HRException("Employee not found!");
     }
+    throw new HRException("Employee not found!");
   }
   
   @Override
