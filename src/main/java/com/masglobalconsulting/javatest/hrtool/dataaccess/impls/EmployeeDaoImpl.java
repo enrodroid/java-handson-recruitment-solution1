@@ -28,25 +28,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
   
   private List<EmployeeDto> employeesData;
   
-  private List<EmployeeDto> fetchDataFromRemoteApi() {
-    LOGGER.debug("Fetching employee data from an external API from: {}", datasourceApiUrl);
-    
-    ResponseEntity<EmployeeDto[]> response = restTemplate.getForEntity(datasourceApiUrl, EmployeeDto[].class);
-    EmployeeDto[] employeeData = response.getBody();
-    
-    if (Objects.nonNull(employeeData)) {
-      LOGGER.debug("Found {} employees", employeeData.length);
-      return Arrays.asList(employeeData);
-    }
-    return Collections.emptyList();
-  }
-  
-  private void checkDataLoadStatus() {
-    if (Objects.isNull(employeesData) || employeesData.equals(Collections.emptyList())) {
-      employeesData = fetchDataFromRemoteApi();
-    }
-  }
-  
   @Autowired
   public EmployeeDaoImpl(RestTemplate restTemplate, Environment environment) {
     this.restTemplate = restTemplate;
@@ -77,6 +58,25 @@ public class EmployeeDaoImpl implements EmployeeDao {
     } catch (Exception e) {
       LOGGER.error("Datasource loading execution has fail!", e);
       throw new HRDaoException("Remote data loading for all employees has fail!");
+    }
+  }
+  
+  private List<EmployeeDto> fetchDataFromRemoteApi() {
+    LOGGER.debug("Fetching employee data from an external API from: {}", datasourceApiUrl);
+    
+    ResponseEntity<EmployeeDto[]> response = restTemplate.getForEntity(datasourceApiUrl, EmployeeDto[].class);
+    EmployeeDto[] employeeData = response.getBody();
+    
+    if (Objects.nonNull(employeeData)) {
+      LOGGER.debug("Found {} employees", employeeData.length);
+      return Arrays.asList(employeeData);
+    }
+    return Collections.emptyList();
+  }
+  
+  private void checkDataLoadStatus() {
+    if (Objects.isNull(employeesData) || employeesData.equals(Collections.emptyList())) {
+      employeesData = fetchDataFromRemoteApi();
     }
   }
 }
